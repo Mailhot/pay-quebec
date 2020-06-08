@@ -179,3 +179,37 @@ class IncomeTaxWithheldPerPeriod():
         result = (self.income_tax_year / self.pay_periods) + self.additional_source_deduction
         return result
 
+class QuebecPensionPlan():
+    """Q = Employee’s QPP contribution to be withheld for the pay period
+         = 0.0570 × [S3 – (V / P)], up to a maximum of M – A5
+    """
+    def __init__(self, S3, V, P, M, A5):
+        self.S3 = S3
+        self.V = V
+        self.P = P
+        self.M = M
+        self.A5 = A5
+
+    def calculate(self):
+        result = 0.0570 * (self.S3 - (self.V / self.P))
+        if result > (self.M - self.A5):
+            result = (self.M - self.A5)
+
+        return result
+
+class QuebecParentalInsurancePlan():
+    """Ap = = (0.00494 × S4), up to a maximum of N – A6
+
+    """
+    def __init__(self, S4, N, A6):
+        self.S4 = S4
+        self.N = N
+        self.A6 = A6
+    
+    def calculate(self):
+        result = (0.00494 * self.S4)
+        if result > (self.N - self.A6):
+            result = (N - A6)
+
+        return result
+

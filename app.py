@@ -31,6 +31,13 @@ print('income_tax_year = ', income_tax_year.calculate())
 income_tax_withheld_period = objects.IncomeTaxWithheldPerPeriod(income_tax_year.calculate(), pay_periods, additional_source_deduction=0)
 print('income_tax_withheld_period = ', income_tax_withheld_period.calculate())
 
+quebec_pension_plan = objects.QuebecPensionPlan(S3=remuneration_per_period, V=3500, P=52, M=3146.4, A5=0)
+print('quebec_pension_plan = ', quebec_pension_plan.calculate())
+
+quebec_parental_insurance_plan = objects.QuebecParentalInsurancePlan(S4=remuneration_per_period, N=387.79, A6=0)
+print('quebec_parental_insurance_plan = ', quebec_parental_insurance_plan.calculate())
+
+
 
 T = federal.FederalTaxRate(T1=0, P=pay_periods, L=0)
 print('federal tax rate = ', T.calculate())
@@ -38,8 +45,13 @@ print('federal tax rate = ', T.calculate())
 annual_taxable_income = federal.AnnualTaxableIncome(P=pay_periods, I=remuneration_per_period, F=0, F2=0, U1=0, HD=0, F1=0, L=0)
 print('annual_taxable_income_federal = ', annual_taxable_income.calculate())
 
-
 A = 1464*52
+print('A', A)
 
 basic_federal_tax = federal.BasicFederalTax(R=0.205, A=A, K=2669, K1=0, K2Q=0, K3=0, K4=0, TC=0, P=0, C=0, AE=0, IE=0)
 print('basic_federal_tax = ', basic_federal_tax.calculate())
+
+annual_payable_tax_federal = federal.AnnualPayableTaxFederal(T3=basic_federal_tax.calculate(), LCF=750) # T1
+print('annual_payable_tax_federal = ', annual_payable_tax_federal.calculate())
+
+print('retenue per pay period = ', annual_payable_tax_federal.calculate()/pay_periods)

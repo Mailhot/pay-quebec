@@ -57,9 +57,10 @@ class BasicFederalTax(): # T3
             self.P_IE = 387.79
 
 
-        self.K2Q = [(0.15 * self.P_C) + (0.15 * self.P_AE) + (0.15 * self.P_IE)]
+        self.K2Q = ((0.15 * self.P_C) + (0.15 * self.P_AE) + (0.15 * self.P_IE))
 
     def calculate(self):
+        # print(self.R, self.A, self.K, self.K1, 'K2Q', self.K2Q, 'K3', self.K3, self.K4)
 
         result = (self.R * self.A) - self.K - self.K1 - self.K2Q - self.K3 - self.K4
         if result < 0:
@@ -73,7 +74,7 @@ class AnnualPayableTaxFederal(): # T1
         self.LCF = LCF
     
     def calculate(self):
-        self.T3_LCF = T3 - LCF
+        self.T3_LCF = self.T3 - self.LCF
         if self.T3_LCF < 0:
             self.T3_LCF = 0
 
