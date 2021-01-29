@@ -192,7 +192,7 @@ class QuebecPensionPlan():
     def calculate(self):
         result = 0.0570 * (self.S3 - (self.V / self.P))
         if self.A5 >= self.M:
-            self.A5 = sef.M
+            self.A5 = self.M
         if result > (self.M - self.A5):
             result = (self.M - self.A5)
 
@@ -209,8 +209,11 @@ class QuebecParentalInsurancePlan():
     
     def calculate(self):
         result = (0.00494 * self.S4)
+        if self.A6 >= self.N:
+            self.A6 = self.N
         if result > (self.N - self.A6):
             result = (N - A6)
+
 
         return result
 
