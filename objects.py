@@ -133,9 +133,8 @@ class IncomeTaxYear():
         The total of the amounts withheld for the year must not exceed $5,000. For the pay period in which the
         annual maximum is reached, the value of variables Q and Q1
          must be zero.
-
-
     """
+
     def __init__(self, I, K1=0, E=0, P=52, Q=0, Q1=0):
         self.I = I
         self.K1 = K1
@@ -192,6 +191,8 @@ class QuebecPensionPlan():
 
     def calculate(self):
         result = 0.0570 * (self.S3 - (self.V / self.P))
+        if self.A5 >= self.M:
+            self.A5 = sef.M
         if result > (self.M - self.A5):
             result = (self.M - self.A5)
 
