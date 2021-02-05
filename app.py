@@ -30,7 +30,7 @@ print('source_deduction_return = ', source_deduction_return.calculate())
 annual_income = objects.AnnualIncome(pay_periods, remuneration_per_period, 0, deduction_employment_income.calculate(), source_deduction_return.calculate(), reduction_source_deductions=0)
 print('annual_income =', annual_income.calculate())
 
-remuneration_per_period_reduced = annual_income.calculate()/pay_periods
+remuneration_per_period_reduced = annual_income.calculate() / pay_periods
 print('updated remuneration per period:', remuneration_per_period_reduced)
 
 income_tax_year = objects.IncomeTaxYear(I=annual_income.calculate(), K1=0, E=15532, P=pay_periods, Q=0, Q1=0)

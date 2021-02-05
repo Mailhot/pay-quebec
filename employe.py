@@ -25,15 +25,25 @@ class Employee():
 		self.CEA = CEA
 
 
-class WeekPay():
-	def __init__(self, employee, company,):
-		self.employee = employee
+class EmployeePeriodPay():
+	def __init__(self, employee, company, remaining_pay_period, pay_period_per_year):
+		self.employee = employee # list
 		self.company = company
+		self.remaining_pay_period = remaining_pay_period # Number
+		self.pay_period_per_year = pay_period_per_year
+
 		
 
 class Company():
-	def __init__(self, csst_rate, ):
-		self.csst_rate = csst_rate
+	def __init__(self, CSST_rate, RRQ_rate, RQAP_rate, EI_rate, FSS_rate,):
+		self.CSST_rate = csst_rate
+		self.RRQ_rate = RRQ_rate
+		self.RQAP_rate = RQAP_rate
+		self.EI_rate = EI_rate
+		self.FSS_rate = FSS_rate
+
+
+
 
 def weekly_company_payment(employee_pays, fees, qst, gst):
 	pass
